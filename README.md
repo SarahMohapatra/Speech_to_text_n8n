@@ -1,4 +1,4 @@
-# Speech_to_text_n8n (n8n + Whisper)
+# Speech to text (n8n + Whisper)
 Speech to text using n8n and OpenAI's whisper locally and completely free (only for running locally)
 
 ## Tech Stack
