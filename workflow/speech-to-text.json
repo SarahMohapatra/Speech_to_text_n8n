@@ -1,0 +1,105 @@
+{
+  "name": "Whisper_workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -272,
+        -16
+      ],
+      "id": "0ac4564b-a8d4-4002-ae18-d81ef0becf0f",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "fileSelector": "/Users/LENOVO/.n8n-files/input/*",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1.1,
+      "position": [
+        -64,
+        -16
+      ],
+      "id": "c79a2864-4eca-41c6-a4a2-e5371bd8aebe",
+      "name": "Read/Write Files from Disk"
+    },
+    {
+      "parameters": {
+        "executeOnce": false,
+        "command": "=/Users/LENOVO/Desktop/n8n_proj/venv/bin/python -m whisper /Users/LENOVO/.n8n-files/input/{{ $json.fileName }} --output_dir /Users/LENOVO/.n8n-files/output --output_format all --model medium"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        144,
+        -16
+      ],
+      "id": "886ef59a-fde4-42a6-bf0e-13cb1bf8db2e",
+      "name": "Execute Command"
+    },
+    {
+      "parameters": {
+        "executeOnce": false,
+        "command": "=mv /Users/LENOVO/.n8n-files/input/{{ $('Read/Write Files from Disk').item.json.fileName }} /Users/LENOVO/.n8n-files/processed"
+      },
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        352,
+        -16
+      ],
+      "id": "229177f5-368c-4b7f-8ccd-e0ceffd3ea18",
+      "name": "Execute Command1"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read/Write Files from Disk": {
+      "main": [
+        [
+          {
+            "node": "Execute Command",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Command": {
+      "main": [
+        [
+          {
+            "node": "Execute Command1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "80e70d26-39dd-4cec-8a69-c88982598585",
+  "meta": {
+    "instanceId": "15260307e4d7b795189da551a1a841180ba1c2a74a2acc3202ad263c69b31da7"
+  },
+  "id": "LUPvb24UX66XLTju",
+  "tags": []
+}
