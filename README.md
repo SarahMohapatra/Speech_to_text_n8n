@@ -21,8 +21,11 @@ Mac/Linux: NODES_EXCLUDE="[]" npx n8n start
 
 ## How it Works
 Manual Trigger: Initiates the workflow.
+
 Read Files: Scans the input/ folder for audio files.
+
 Execute Command (Whisper): Triggers the local Python model to transcribe each file and stores the output in output/ folder. The audio is coverted to all forms such as txt, srt, json, etc
+
 Execute Command: Transfers the completed audio files to the processed/ folder to keep the workspace clean.
 
 ![n8n Workflow Screenshot](images/workflow.jpeg)
